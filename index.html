@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcela Moura" />
+    <meta name="keywords" content="arte, tecnologia, cidades, histórias" />
+    <title>EUA Afora</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./imagens/logo.png"
+          alt="imagem da logo"
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            src="./imagens/image.logo.jpeg"
+            alt="Foto de Jacques Cousteau"
+            class="profile__avatar"
+          />
+          <div class="profile__info">
+            <span class="profile__name1">Jacques Cousteau</span>
+            <span class="profile__name2">Explorador</span>
+          </div>
+          <button class="profile__edit-button">
+            <img
+              src="./imagens/caneta.png"
+              alt="imagem de um botão"
+              class="profile__edit-caneta"
+            />
+          </button>
+
+          <button class="profile__action-button">
+            <img
+              src="./imagens/Vector (1).png"
+              alt="imagem de um vector"
+              class="profile__action-vector"
+            />
+          </button>
+        </section>
+        <section class="elements">
+          <div class="element">
+            <img
+              src="./imagens/image1.jpeg"
+              alt="imagem do vale de yosemite"
+              class="element__image"
+            />
+            <div class="element__info">
+              <p class="element__title">Vale de Yosemite</p>
+              <img
+                src="./imagens/coração.png"
+                alt="curtir"
+                class="element__heart"
+              />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./imagens/image2.jpeg"
+              alt="imagem do Lago Louise"
+              class="element__image"
+            />
+            <div class="element__info">
+              <p class="element__title">Lago Louise</p>
+              <img
+                src="./imagens/coração.png"
+                alt="curtir"
+                class="element__heart"
+              />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./imagens/image3.jpeg"
+              alt=" imagem de Montanhas Care"
+              class="element__image"
+            />
+            <div class="element__info">
+              <p class="element__title">Montanhas Care...</p>
+              <img
+                src="./imagens/coração.png"
+                alt="curtir"
+                class="element__heart"
+              />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./imagens/image4.jpeg"
+              alt="imagem deLatemar"
+              class="element__image"
+            />
+            <div class="element__info">
+              <p class="element__title">Latemar</p>
+              <img
+                src="./imagens/coração.png"
+                alt="curtir"
+                class="element__heart"
+              />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./imagens/image5.jpeg"
+              alt="Imagem do Parque Nacional"
+              class="element__image"
+            />
+            <div class="element__info">
+              <p class="element__title">Parque Nacional...</p>
+              <img
+                src="./imagens/coração.png"
+                alt="curtir"
+                class="element__heart"
+              />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./imagens/image6.jpeg"
+              alt="Imagem do Lago di Braies"
+              class="element__image"
+            />
+            <div class="element__info">
+              <p class="element__title">Lago di Braies</p>
+              <img
+                src="./imagens/coração.png"
+                alt="curtir"
+                class="element__heart"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2025 Around The U.S.</p>
+      </footer>
+      <div class="popup hide-form" id="popup">
+        <div class="popup__container">
+          <img
+            src="./imagens/Close Icon.png"
+            alt="imagem do icon close"
+            class="popup__close-icon"
+          />
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__field">
+            <input
+              type="text"
+              class="popup__input_name"
+              placeholder="Nome"
+              required
+            />
+            <input
+              type="text"
+              class="popup__input_job"
+              placeholder="Profissão"
+              required
+            />
+            <button type="button" class="popup__save-button">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./script/index.js"></script>
+  </body>
+</html>
