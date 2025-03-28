@@ -25,11 +25,21 @@
   margin-left: 30px;
 }
 
+.profile__name1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
 .profile__name2 {
   font-weight: 400;
   font-size: 18px;
-  align-items: center;
   margin-top: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .profile__action-button {
@@ -74,10 +84,13 @@
   max-width: 22px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   .profile {
-    text-align: center;
-    margin-left: 30px;
+    max-width: 720px;
+  }
+
+  .profile__info {
+    font-size: 30px;
   }
 }
 

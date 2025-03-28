@@ -1,15 +1,13 @@
-let name = document.querySelector(".profile__name1");
-let job = document.querySelector(".profile__name2");
-console.log(name.textContent);
-console.log(job.textContent);
+const name = document.querySelector(".profile__name1");
+const job = document.querySelector(".profile__name2");
 
-let inputName = document.querySelector(".popup__input_name");
-let inputJob = document.querySelector(".popup__input_job");
+const inputName = document.querySelector(".popup__input_name");
+const inputJob = document.querySelector(".popup__input_job");
 
 inputName.value = name.textContent;
 inputJob.value = job.textContent;
 
-let saveButton = document.querySelector(".popup__save-button");
+const saveButton = document.querySelector(".popup__save-button");
 saveButton.addEventListener("click", saveName);
 function saveName() {
   name.textContent = inputName.value;
@@ -17,15 +15,14 @@ function saveName() {
   popup.classList.add("hide-form");
 }
 
-let editButton = document.querySelector(".profile__edit-caneta");
-let popup = document.querySelector(".popup");
+const editButton = document.querySelector(".profile__edit-caneta");
+const popup = document.querySelector(".popup");
 
 editButton.addEventListener("click", function () {
   popup.classList.remove("hide-form");
-  console.log("entrou");
 });
 
-let editIcon = document.querySelector(".popup__close-icon");
+const editIcon = document.querySelector(".popup__close-icon");
 
 editIcon.addEventListener("click", function () {
   popup.classList.add("hide-form");

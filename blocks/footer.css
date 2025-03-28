@@ -2,15 +2,14 @@
   color: rgba(84, 84, 84, 1);
 }
 .footer__copyright {
-  font: inter;
   font-weight: 400;
   font-size: 18px;
   margin: 67px auto 60px 200px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   .footer__copyright {
-    margin: 0 auto;
+    margin: 0 auto 20px 50px;
   }
 }
 
