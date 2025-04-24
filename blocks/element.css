@@ -11,6 +11,7 @@
 
 .element {
   width: 100%;
+  position: relative;
 }
 
 .element__image {
@@ -39,7 +40,7 @@
   background: rgba(255, 255, 255, 1);
   color: rgba(0, 0, 0, 1);
   padding: 10px 15px;
-  margin: 0 auto 0 1px;
+  margin: 0;
   font-weight: 900;
   font-size: 24px;
   white-space: nowrap;
@@ -51,10 +52,9 @@
   color: rgba(0, 0, 0, 1);
   width: 21px;
   height: 19px;
-  position: absolute;
-  transform: translateY(40%);
-  bottom: 50%;
-  right: 10px;
+  cursor: pointer;
+  justify-self: end;
+  margin-right: 15px;
 }
 
 .element__heart:hover {
@@ -63,6 +63,19 @@
 
 .element__heart.active {
   opacity: 1;
+}
+
+.element__trash {
+  width: 18px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.element__trash:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 880px) {

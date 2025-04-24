@@ -55,6 +55,7 @@
   align-items: center;
   justify-content: center;
   margin-left: auto;
+  cursor: pointer;
 }
 .profile__action-button:hover {
   opacity: 0.6;
@@ -74,6 +75,7 @@
   justify-content: center;
   margin-left: 18px;
   margin-top: -20px;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {

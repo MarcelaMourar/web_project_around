@@ -45,98 +45,7 @@
             />
           </button>
         </section>
-        <section class="elements">
-          <div class="element">
-            <img
-              src="./imagens/image1.jpeg"
-              alt="imagem do vale de yosemite"
-              class="element__image"
-            />
-            <div class="element__info">
-              <p class="element__title">Vale de Yosemite</p>
-              <img
-                src="./imagens/coração.png"
-                alt="curtir"
-                class="element__heart"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./imagens/image2.jpeg"
-              alt="imagem do Lago Louise"
-              class="element__image"
-            />
-            <div class="element__info">
-              <p class="element__title">Lago Louise</p>
-              <img
-                src="./imagens/coração.png"
-                alt="curtir"
-                class="element__heart"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./imagens/image3.jpeg"
-              alt=" imagem de Montanhas Care"
-              class="element__image"
-            />
-            <div class="element__info">
-              <p class="element__title">Montanhas Care...</p>
-              <img
-                src="./imagens/coração.png"
-                alt="curtir"
-                class="element__heart"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./imagens/image4.jpeg"
-              alt="imagem deLatemar"
-              class="element__image"
-            />
-            <div class="element__info">
-              <p class="element__title">Latemar</p>
-              <img
-                src="./imagens/coração.png"
-                alt="curtir"
-                class="element__heart"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./imagens/image5.jpeg"
-              alt="Imagem do Parque Nacional"
-              class="element__image"
-            />
-            <div class="element__info">
-              <p class="element__title">Parque Nacional...</p>
-              <img
-                src="./imagens/coração.png"
-                alt="curtir"
-                class="element__heart"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./imagens/image6.jpeg"
-              alt="Imagem do Lago di Braies"
-              class="element__image"
-            />
-            <div class="element__info">
-              <p class="element__title">Lago di Braies</p>
-              <img
-                src="./imagens/coração.png"
-                alt="curtir"
-                class="element__heart"
-              />
-            </div>
-          </div>
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2025 Marcela Moura</p>
@@ -166,7 +75,69 @@
           </form>
         </div>
       </div>
+      <div class="popup hide-form" id="popup-action">
+        <div class="popup__container">
+          <img
+            src="./imagens/Close Icon.png"
+            alt="imagem do icon close"
+            class="popup__close-icon"
+            id="close-profile-form"
+          />
+          <h2 class="popup__title">Novo Local</h2>
+          <form class="popup__form" id="form-new-card">
+            <input
+              type="text"
+              class="popup__input popup__input_name"
+              placeholder="Título"
+              required
+              id="title-input"
+            />
+            <input
+              type="text"
+              class="popup__input popup__input_job"
+              placeholder="Link de imagem"
+              required
+              id="link-input"
+            />
+            <button type="submit" class="popup__save-button">Criar</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup hide-form" id="popup-img">
+        <div class="popup__container popup__container_img">
+          <img
+            src="./imagens/Close Icon.png"
+            alt="imagem do icon close"
+            class="popup__close-icon"
+            id="close-profile-form"
+          />
+          <div class="popup__container-img-text">
+            <img src="" alt="" class="popup__img" id="popup-image" />
+            <p class="popup__city-name"></p>
+          </div>
+        </div>
+      </div>
     </div>
+    <template id="card-template">
+      <div class="element">
+        <div class="element__image-container">
+          <img class="element__image" alt="Imagem do local" />
+          <img
+            src="./imagens/lixeira.png"
+            alt="excluir"
+            class="element__trash"
+          />
+        </div>
+        <div class="element__info">
+          <p class="element__title"></p>
+          <img
+            src="./imagens/coração.png"
+            alt="curtir"
+            class="element__heart"
+          />
+        </div>
+      </div>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

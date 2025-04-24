@@ -9,6 +9,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 10;
 }
 
 .popup__title {
@@ -27,6 +28,13 @@
   position: relative;
   padding: 30px;
   width: 100%;
+}
+
+.popup__container_img {
+  background: transparent;
+  max-width: 816px;
+  height: 540px;
+  padding: 0;
 }
 .popup__form {
   font-weight: 400;
@@ -64,6 +72,7 @@
   padding: 12px;
   text-align: center;
   margin: 85px 36px auto 36px;
+  cursor: pointer;
 }
 
 .popup__save-button:hover {
@@ -78,6 +87,7 @@
   top: -40px;
   right: -40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .popup__close-icon:hover {
