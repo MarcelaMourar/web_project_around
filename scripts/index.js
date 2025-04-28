@@ -99,16 +99,17 @@ formNewCard.addEventListener("submit", function (event) {
   const titleValue = inputTitle.value;
   const linkValue = inputLink.value;
 
-  const newCard = createCard(titleValue, linkValue);
+  const newCard = criarCard(titleValue, linkValue);
   cardContainer.prepend(newCard);
 
   popupAction.classList.add("hide-form");
+  lidarPopupImg();
 });
 
 const popupImg = document.querySelector("#popup-img");
 const closePopupImg = popupImg.querySelector(".popup__close-icon");
 closePopupImg.addEventListener("click", function () {
-  popupImg.classList.remove("hide-form");
+  popupImg.classList.add("hide-form");
 });
 
 container.addEventListener("click", (e) => {
@@ -116,3 +117,24 @@ container.addEventListener("click", (e) => {
     e.target.closest(".element").remove();
   }
 });
+function lidarPopupImg() {
+  const img2 = document.querySelectorAll(".element__image");
+
+  for (let i in img2) {
+    img2[i].addEventListener("click", (e) => {
+      const popupImage = document.querySelector(".popup__img");
+      popupImage.src = img2[i].src;
+      popupImg.classList.remove("hide-form");
+
+      atualizarTitulo(img2[i]);
+      popupImg.classList.remove("hide-form");
+    });
+  }
+}
+lidarPopupImg();
+
+function atualizarTitulo(imagem) {
+  const popupCityName = document.querySelector(".popup__city-name");
+  const cardTitle = imagem.closest(".element").querySelector(".element__title");
+  popupCityName.textContent = cardTitle.textContent;
+}

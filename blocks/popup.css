@@ -32,9 +32,29 @@
 
 .popup__container_img {
   background: transparent;
-  max-width: 816px;
-  height: 540px;
   padding: 0;
+  max-width: 75vw;
+  max-height: 75vh;
+  height: auto;
+  display: flex;
+  width: auto;
+}
+
+.popup__city-name {
+  position: absolute;
+  top: 100%;
+}
+
+.popup__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+.popup__close-icon {
+  position: absolute;
 }
 .popup__form {
   font-weight: 400;
