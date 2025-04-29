@@ -7,7 +7,7 @@ const inputJob = document.querySelector(".popup__input_job");
 inputName.value = name.textContent;
 inputJob.value = job.textContent;
 
-const popup = document.querySelector(".popup");
+const popup = document.querySelector("#popup");
 const saveButton = document.querySelector(".popup__save-button");
 saveButton.addEventListener("click", saveName);
 function saveName() {
@@ -77,6 +77,13 @@ function criarCard(name, link) {
 
   const title = cardElement.querySelector(".element__title");
   title.textContent = name;
+
+  const heartIcon = cardElement.querySelector(".element__heart");
+  heartIcon.addEventListener("click", function () {
+    const isLiked = heartIcon.classList.toggle("liked");
+
+    heartIcon.src = isLiked ? "./imagens/Union.png" : "./imagens/coração.png";
+  });
 
   return cardElement;
 }
