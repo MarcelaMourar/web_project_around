@@ -58,20 +58,28 @@
             class="popup__close-icon"
           />
           <h2 class="popup__title">Editar perfil</h2>
-          <form class="popup__form">
+          <form class="popup__form" id="form-new-card">
             <input
               type="text"
               class="popup__input popup__input_name"
               placeholder="Nome"
               required
+              minlength="2"
+              maxlength="40"
+              id="profile_perfil"
             />
+            <span class="popup__validation" id="profile_perfil-error"></span>
             <input
               type="text"
               class="popup__input popup__input_job"
               placeholder="Profissão"
               required
+              minlength="2"
+              maxlength="200"
+              id="profile__text"
             />
-            <button type="button" class="popup__save-button">Salvar</button>
+            <span class="popup__validation" id="profile__text-error"></span>
+            <button type="submit" class="popup__save-button">Salvar</button>
           </form>
         </div>
       </div>
@@ -91,14 +99,18 @@
               placeholder="Título"
               required
               id="title-input"
+              minlength="2"
+              maxlength="30"
             />
+            <span class="popup__validation" id="title-input-error"></span>
             <input
-              type="text"
+              type="url"
               class="popup__input popup__input_job"
               placeholder="Link de imagem"
               required
               id="link-input"
             />
+            <span class="popup__validation" id="link-input-error"></span>
             <button type="submit" class="popup__save-button">Criar</button>
           </form>
         </div>

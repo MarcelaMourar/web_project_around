@@ -19,13 +19,13 @@ function saveName() {
 const editButton = document.querySelector(".profile__edit-caneta");
 
 editButton.addEventListener("click", function () {
-  popup.classList.remove("hide-form");
+  openPopup(popup);
 });
 
 const editIcon = document.querySelector(".popup__close-icon");
 
 editIcon.addEventListener("click", function () {
-  popup.classList.add("hide-form");
+  closePopup(popup);
 });
 
 const actionButton = document.querySelector(".profile__action-button");
@@ -33,11 +33,11 @@ const popupAction = document.querySelector("#popup-action");
 const actionIcon = popupAction.querySelector(".popup__close-icon");
 
 actionButton.addEventListener("click", function () {
-  popupAction.classList.remove("hide-form");
+  openPopup(popupAction);
 });
 
 actionIcon.addEventListener("click", function () {
-  popupAction.classList.add("hide-form");
+  closePopup(popupAction);
 });
 
 const initialCards = [
@@ -116,7 +116,7 @@ formNewCard.addEventListener("submit", function (event) {
 const popupImg = document.querySelector("#popup-img");
 const closePopupImg = popupImg.querySelector(".popup__close-icon");
 closePopupImg.addEventListener("click", function () {
-  popupImg.classList.add("hide-form");
+  closePopup(popupImg);
 });
 
 container.addEventListener("click", (e) => {
@@ -127,16 +127,15 @@ container.addEventListener("click", (e) => {
 function lidarPopupImg() {
   const img2 = document.querySelectorAll(".element__image");
 
-  for (let i in img2) {
-    img2[i].addEventListener("click", (e) => {
+  img2.forEach((img) => {
+    img.addEventListener("click", () => {
       const popupImage = document.querySelector(".popup__img");
-      popupImage.src = img2[i].src;
+      popupImage.src = img.src;
       popupImg.classList.remove("hide-form");
 
-      atualizarTitulo(img2[i]);
-      popupImg.classList.remove("hide-form");
+      atualizarTitulo(img);
     });
-  }
+  });
 }
 lidarPopupImg();
 
@@ -145,3 +144,116 @@ function atualizarTitulo(imagem) {
   const cardTitle = imagem.closest(".element").querySelector(".element__title");
   popupCityName.textContent = cardTitle.textContent;
 }
+
+function showInputError(form, input, settings) {
+  const errorElement = form.querySelector(`#${input.id}-error`);
+  input.classList.add(settings.inputErrorClass);
+  errorElement.textContent = input.validationMessage;
+  errorElement.classList.add(settings.errorClass);
+}
+
+function hideInputError(form, input, settings) {
+  const errorElement = form.querySelector(`#${input.id}-error`);
+  input.classList.remove(settings.inputErrorClass);
+  errorElement.textContent = "";
+  errorElement.classList.remove(settings.errorClass);
+}
+
+function checkInputValidity(form, input, settings) {
+  if (!input.validity.valid) {
+    showInputError(form, input, settings);
+  } else {
+    hideInputError(form, input, settings);
+  }
+}
+
+function setEventListeners(formElement, settings) {
+  const inputs = Array.from(
+    formElement.querySelectorAll(settings.inputSelector)
+  );
+  const button = formElement.querySelector(settings.submitButtonSelector);
+
+  toggleButtonState(inputs, button, settings);
+
+  inputs.forEach((inputElement) => {
+    inputElement.addEventListener("input", () => {
+      checkInputValidity(formElement, inputElement, settings);
+      toggleButtonState(inputs, button, settings);
+    });
+  });
+}
+
+function enableValidation(settings) {
+  const forms = Array.from(document.querySelectorAll(settings.formSelector));
+  forms.forEach((formElement) => {
+    formElement.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const inputs = Array.from(
+        formElement.querySelectorAll(settings.inputSelector)
+      );
+      let isValid = true;
+
+      inputs.forEach((input) => {
+        checkInputValidity(formElement, input, settings);
+        if (!input.validity.valid) {
+          isValid = false;
+        }
+      });
+
+      if (isValid) {
+        console.log("Formulário válido!");
+        saveName();
+      }
+    });
+    setEventListeners(formElement, settings);
+  });
+}
+
+function toggleButtonState(inputs, button, settings) {
+  const isFormValid = inputs.every((input) => input.validity.valid);
+
+  if (isFormValid) {
+    button.disabled = false;
+    button.classList.remove(settings.inactiveButtonClass);
+  } else {
+    button.disabled = true;
+    button.classList.add(settings.inactiveButtonClass);
+  }
+}
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+});
+
+function openPopup(popup) {
+  popup.classList.remove("hide-form");
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closePopup(popup) {
+  popup.classList.add("hide-form");
+  document.removeEventListener("keydown", handleEscClose);
+}
+
+function handleEscClose(e) {
+  if (e.key === "Escape") {
+    const openPopup = document.querySelector(".popup:not(.hide-form)");
+    if (openPopup) {
+      closePopup(openPopup);
+    }
+  }
+}
+
+document.querySelectorAll(".popup").forEach((popup) => {
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      closePopup(popup);
+    }
+  });
+});
