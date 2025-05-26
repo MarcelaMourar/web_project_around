@@ -16,7 +16,7 @@ function saveName() {
   popup.classList.add("hide-form");
 }
 
-const editButton = document.querySelector(".profile__edit-caneta");
+const editButton = document.querySelector(".profile__edit-button");
 
 editButton.addEventListener("click", function () {
   openPopup(popup);
@@ -134,6 +134,7 @@ function lidarPopupImg() {
       popupImg.classList.remove("hide-form");
 
       atualizarTitulo(img);
+      openPopup(popupImg);
     });
   });
 }
