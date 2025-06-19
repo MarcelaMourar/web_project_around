@@ -8,8 +8,8 @@ const profileCloseButton = profilePopup.querySelector(".popup__close-icon");
 
 const inputName = profilePopup.querySelector(".popup__input_name");
 const inputJob = profilePopup.querySelector(".popup__input_job");
-const displayName = document.querySelector(".profile__name1");
-const displayJob = document.querySelector(".profile__name2");
+const displayName = document.querySelector(".profile__name");
+const displayJob = document.querySelector(".profile__title");
 
 profileEditButton.addEventListener("click", () => {
   inputName.value = displayName.textContent;
@@ -35,6 +35,25 @@ const addCloseButton = addPopup.querySelector(".popup__close-icon");
 
 addButton.addEventListener("click", () => openPopup(addPopup));
 addCloseButton.addEventListener("click", () => closePopup(addPopup));
+
+const newCardForm = document.querySelector("#form-new-card");
+const titleInput = document.querySelector("#title-input");
+const linkInput = document.querySelector("#link-input");
+
+newCardForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newCardData = {
+    name: titleInput.value,
+    link: linkInput.value,
+  };
+
+  const newCard = new Card(newCardData, "#card-template");
+  container.prepend(newCard.generateCard());
+
+  closePopup(addPopup);
+  newCardForm.reset();
+});
 
 const initialCards = [
   {

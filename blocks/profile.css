@@ -25,21 +25,21 @@
   margin-left: 30px;
 }
 
-.profile__name1 {
+.profile__name {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 500px;
 }
 
-.profile__name2 {
+.profile__title {
   font-weight: 400;
   font-size: 18px;
   margin-top: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 500px;
 }
 
 .profile__action-button {
