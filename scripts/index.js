@@ -1,61 +1,60 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { openPopup, closePopup, setupPopupClose } from "./utils.js";
+import { Section } from "./Section.js";
+import { Popup } from "./Popup.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
 
-const profilePopup = document.querySelector("#popup");
+const profilePopup = new PopupWithForm("#popup", (formData) => {
+  userInfo.setUserInfo({
+    name: formData["name"],
+    job: formData["job"],
+  });
+});
+profilePopup.setEventListeners();
+
+const addPopup = new PopupWithForm("#popup-action", (formData) => {
+  const newCardData = {
+    name: formData["title"],
+    link: formData["link"],
+  };
+  const cardElement = createCard(newCardData);
+  cardSection.addItem(cardElement);
+  addPopup.close();
+});
+addPopup.setEventListeners();
+
+const imagePopup = new PopupWithImage("#popup-img");
+imagePopup.setEventListeners();
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__title",
+});
+
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileCloseButton = profilePopup.querySelector(".popup__close-icon");
-
-const inputName = profilePopup.querySelector(".popup__input_name");
-const inputJob = profilePopup.querySelector(".popup__input_job");
-const displayName = document.querySelector(".profile__name");
-const displayJob = document.querySelector(".profile__title");
-
-profileEditButton.addEventListener("click", () => {
-  inputName.value = displayName.textContent;
-  inputJob.value = displayJob.textContent;
-  openPopup(profilePopup);
-});
-
-profileCloseButton.addEventListener("click", () => {
-  closePopup(profilePopup);
-});
-
-const profileForm = profilePopup.querySelector(".popup__form");
-profileForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  displayName.textContent = inputName.value;
-  displayJob.textContent = inputJob.value;
-  closePopup(profilePopup);
-});
-
-const addPopup = document.querySelector("#popup-action");
 const addButton = document.querySelector(".profile__action-button");
-const addCloseButton = addPopup.querySelector(".popup__close-icon");
+const inputName = document.querySelector(".popup__input_name");
+const inputJob = document.querySelector(".popup__input_job");
 
-addButton.addEventListener("click", () => openPopup(addPopup));
-addCloseButton.addEventListener("click", () => closePopup(addPopup));
-
+const containerSelector = ".elements";
 const newCardForm = document.querySelector("#form-new-card");
 const titleInput = document.querySelector("#title-input");
 const linkInput = document.querySelector("#link-input");
 
-newCardForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const newCardData = {
-    name: titleInput.value,
-    link: linkInput.value,
-  };
-
-  const newCard = new Card(newCardData, "#card-template");
-  container.prepend(newCard.generateCard());
-
-  closePopup(addPopup);
-  newCardForm.reset();
+profileEditButton.addEventListener("click", () => {
+  const { name, job } = userInfo.getUserInfo();
+  inputName.value = name;
+  inputJob.value = job;
+  profilePopup.open();
 });
 
-const initialCards = [
+addButton.addEventListener("click", () => {
+  addPopup.open();
+});
+
+const inicialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -82,18 +81,40 @@ const initialCards = [
   },
 ];
 
-const container = document.querySelector(".elements");
+function handleImageClick(name, link) {
+  imagePopup.open(name, link);
+}
 
-initialCards.forEach((card) => {
-  const cardInst = new Card(card, "#card-template");
-  container.appendChild(cardInst.generateCard());
-});
+function createCard(data) {
+  const card = new Card(data, "#card-template", handleImageClick);
+  return card.generateCard();
+}
 
-document.querySelectorAll(".popup__close-icon").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const popup = e.target.closest(".popup");
-    closePopup(popup);
-  });
+const cardSection = new Section(
+  {
+    items: inicialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      cardSection.addItem(cardElement);
+    },
+  },
+  containerSelector
+);
+
+cardSection.renderItems();
+
+newCardForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newCardData = {
+    name: titleInput.value,
+    link: linkInput.value,
+  };
+  const cardElement = createCard(newCardData);
+  cardSection.addItem(cardElement);
+
+  addPopup.close();
+  newCardForm.reset();
 });
 
 const formSettings = {
@@ -109,5 +130,3 @@ document.querySelectorAll(".popup__form").forEach((form) => {
   const validator = new FormValidator(formSettings, form);
   validator.enableValidation();
 });
-
-setupPopupClose();
