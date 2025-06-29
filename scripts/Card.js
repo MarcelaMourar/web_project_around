@@ -1,5 +1,3 @@
-import { Popup } from "./Popup.js";
-
 export class Card {
   constructor({ name, link }, templateSelector, handleImageClick) {
     this._name = name;
