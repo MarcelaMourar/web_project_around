@@ -16,6 +16,15 @@
   object-fit: cover;
   width: 100%;
 }
+.profile__avatar-container {
+  width: 100%;
+}
+
+.profile__avatar-icon {
+  max-width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
 
 .profile__info {
   display: flex;

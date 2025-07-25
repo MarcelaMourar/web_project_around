@@ -6,6 +6,8 @@ export class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".popup__form");
     this._inputList = Array.from(this._form.querySelectorAll(".popup__input"));
+    console.log(this._form);
+    console.log(this._inputList);
   }
 
   _getInputValues() {
@@ -20,8 +22,19 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
+      const result = this._handleFormSubmit(this._getInputValues());
+
+      if (result instanceof Promise) {
+        result
+          .then(() => {
+            this.close();
+          })
+          .catch((err) => {
+            console.error("Erro ao enviar o formulário:", err);
+          });
+      } else {
+        this.close();
+      }
     });
   }
 

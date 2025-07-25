@@ -40,6 +40,13 @@
   width: auto;
 }
 
+.popup__container_delete {
+  max-width: 430px;
+  max-height: 181px;
+  padding: 10px;
+  margin: 0;
+}
+
 .popup__city-name {
   position: absolute;
   top: 100%;

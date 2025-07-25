@@ -5,13 +5,56 @@ import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 import { UserInfo } from "./UserInfo.js";
-import { inicialCards } from "./utils.js";
+import { Api } from "./Api.js";
+import { PopupWithConfirmation } from "./PopupWithConfirmation.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
+  headers: {
+    authorization: "a9ff003e-7f3e-47b6-b5e9-4b1090a76fb5",
+    "Content-Type": "application/json",
+  },
+});
+let currentUserId = null;
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    currentUserId = userData._id;
+
+    userInfo.setUserInfo({
+      name: userData.name,
+      job: userData.about,
+    });
+    document.querySelector(".profile__avatar").src = userData.avatar;
+
+    return api.getInitialCards();
+  })
+  .then((cardsFromServer) => {
+    cardSection.setItems(cardsFromServer);
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error("Erro ao carregar dados do usuário ou cards:", err);
+  });
 
 const profilePopup = new PopupWithForm("#popup", (formData) => {
-  userInfo.setUserInfo({
-    name: formData["name"],
-    job: formData["job"],
-  });
+  return api
+    .setUserInfo({
+      name: formData["name"],
+      job: formData["job"],
+    })
+    .then((updatedUser) => {
+      console.log(updatedUser);
+      userInfo.setUserInfo({
+        name: updatedUser.name,
+        job: updatedUser.about,
+      });
+      profilePopup.close();
+    })
+    .catch((err) => {
+      console.error("Erro ao atualizar perfil:", err);
+    });
 });
 profilePopup.setEventListeners();
 
@@ -20,10 +63,17 @@ const addPopup = new PopupWithForm("#popup-action", (formData) => {
     name: formData["title"],
     link: formData["link"],
   };
-  const cardElement = createCard(newCardData);
-  cardSection.addItem(cardElement);
-  addPopup.close();
+
+  api
+    .createCard(newCardData)
+    .then((createdCard) => {
+      const cardElement = createCard(createdCard);
+      cardSection.addItem(cardElement);
+      addPopup.close();
+    })
+    .catch((err) => console.error("Erro ao criar card:", err));
 });
+
 addPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage("#popup-img");
@@ -59,14 +109,44 @@ function handleImageClick(name, link) {
   imagePopup.open(name, link);
 }
 
+const confirmDeletePopup = new PopupWithConfirmation("#popup-confirm-delete");
+confirmDeletePopup.setEventListeners();
+
+function handleDeleteClick(cardInstance) {
+  confirmDeletePopup.setSubmitAction(() => {
+    api
+      .deleteCard(cardInstance.getId())
+      .then(() => {
+        cardInstance.removeCard();
+        confirmDeletePopup.close();
+      })
+      .catch((err) => {
+        console.error("Erro ao deletar card:", err);
+      });
+  });
+
+  confirmDeletePopup.open();
+}
+
+popup.querySelector(".popup__close-icon").addEventListener("click", () => {
+  popup.classList.add("hide-form");
+});
+
 function createCard(data) {
-  const card = new Card(data, "#card-template", handleImageClick);
+  const card = new Card(
+    data,
+    "#card-template",
+    handleImageClick,
+    handleDeleteClick,
+    api,
+    currentUserId
+  );
   return card.generateCard();
 }
 
 const cardSection = new Section(
   {
-    items: inicialCards,
+    items: [],
     renderer: (item) => {
       const cardElement = createCard(item);
       cardSection.addItem(cardElement);
@@ -75,7 +155,22 @@ const cardSection = new Section(
   containerSelector
 );
 
-cardSection.renderItems();
+const avatarPopup = new PopupWithForm("#popup-avatar", (formData) => {
+  return api
+    .setUserAvatar({ avatar: formData["avatar"] })
+    .then((user) => {
+      document.querySelector(".profile__avatar").src = user.avatar;
+      avatarPopup.close();
+    })
+    .catch((err) => console.error("Erro ao atualizar avatar:", err));
+});
+avatarPopup.setEventListeners();
+
+document
+  .querySelector(".profile__avatar-container")
+  .addEventListener("click", () => {
+    avatarPopup.open();
+  });
 
 const formSettings = {
   formSelector: ".popup__form",
