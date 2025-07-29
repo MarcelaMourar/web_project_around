@@ -38,42 +38,46 @@ api
     console.error("Erro ao carregar dados do usuário ou cards:", err);
   });
 
-const profilePopup = new PopupWithForm("#popup", (formData) => {
-  return api
-    .setUserInfo({
-      name: formData["name"],
-      job: formData["job"],
-    })
-    .then((updatedUser) => {
-      console.log(updatedUser);
-      userInfo.setUserInfo({
-        name: updatedUser.name,
-        job: updatedUser.about,
+const profilePopup = new PopupWithForm(
+  "#popup",
+  (formData) => {
+    return api
+      .setUserInfo({
+        name: formData["name"],
+        job: formData["job"],
+      })
+      .then((updatedUser) => {
+        userInfo.setUserInfo({
+          name: updatedUser.name,
+          job: updatedUser.about,
+        });
+      })
+      .catch((err) => {
+        console.error("Erro ao atualizar perfil:", err);
       });
-      profilePopup.close();
-    })
-    .catch((err) => {
-      console.error("Erro ao atualizar perfil:", err);
-    });
-});
+  },
+  "Salvando..."
+);
 profilePopup.setEventListeners();
 
-const addPopup = new PopupWithForm("#popup-action", (formData) => {
-  const newCardData = {
-    name: formData["title"],
-    link: formData["link"],
-  };
+const addPopup = new PopupWithForm(
+  "#popup-action",
+  (formData) => {
+    const newCardData = {
+      name: formData["title"],
+      link: formData["link"],
+    };
 
-  api
-    .createCard(newCardData)
-    .then((createdCard) => {
-      const cardElement = createCard(createdCard);
-      cardSection.addItem(cardElement);
-      addPopup.close();
-    })
-    .catch((err) => console.error("Erro ao criar card:", err));
-});
-
+    return api
+      .createCard(newCardData)
+      .then((createdCard) => {
+        const cardElement = createCard(createdCard);
+        cardSection.addItem(cardElement);
+      })
+      .catch((err) => console.error("Erro ao criar card:", err));
+  },
+  "Criando..."
+);
 addPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage("#popup-img");

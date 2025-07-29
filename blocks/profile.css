@@ -17,13 +17,35 @@
   width: 100%;
 }
 .profile__avatar-container {
-  width: 100%;
+  position: relative;
 }
 
 .profile__avatar-icon {
   max-width: 26px;
   height: 26px;
   cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 40px;
+  opacity: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile__avatar-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.profile__avatar-container:hover::before {
+  opacity: 1;
+}
+
+.profile__avatar-container:hover .profile__avatar-icon {
+  opacity: 1;
 }
 
 .profile__info {
