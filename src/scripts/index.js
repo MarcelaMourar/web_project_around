@@ -31,7 +31,7 @@ api
     return api.getInitialCards();
   })
   .then((cardsFromServer) => {
-    cardSection.setItems(cardsFromServer);
+    cardSection.setItems(cardsFromServer.reverse());
     cardSection.renderItems();
   })
   .catch((err) => {
