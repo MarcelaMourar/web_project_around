@@ -1,87 +1,84 @@
 # 🌎 EUA Afora
 
-## 📌 Descrição
+## 📌 Description
 
-**EUA Afora** é uma página web interativa desenvolvida como parte do programa de Desenvolvimento Web da TripleTen.
+**EUA Afora** is an interactive web page developed as part of the TripleTen Web Development program.
 
-A aplicação permite que os usuários interajam com o conteúdo por meio de curtidas em fotos e do preenchimento de formulários. O projeto foi construído com foco na experiência do usuário, oferecendo uma interface intuitiva, organizada e responsiva para diferentes dispositivos.
+The application allows users to interact with content by liking photos and filling out forms. The project was built with a focus on user experience, offering an intuitive, organized, and responsive interface for different devices.
 
-O principal objetivo deste projeto foi praticar conceitos fundamentais do desenvolvimento front-end, como manipulação do DOM, interatividade com JavaScript e construção de layouts responsivos.
-
----
-
-## ✨ Funcionalidades
-
-* ❤️ Curtir fotos e interagir com o conteúdo da página;
-* 📝 Preencher e editar formulários;
-* 👤 Atualizar informações do perfil;
-* 📱 Navegar em uma interface totalmente responsiva;
-* ⚡ Interagir dinamicamente com os elementos da página.
+The main objective of this project was to practice fundamental concepts of front-end development, such as DOM manipulation, interactivity with JavaScript, and building responsive layouts.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨Features
 
-* **HTML5** → Estruturação semântica dos elementos da página;
-* **CSS3** → Estilização e criação de layouts responsivos;
-* **JavaScript (ES6+)** → Implementação da lógica da aplicação e interatividade do usuário;
-* **Flexbox** → Alinhamento e organização dos componentes;
-* **CSS Grid** → Construção de layouts adaptáveis;
-* **Media Queries** → Ajuste da interface para diferentes tamanhos de tela.
+* ❤️ Like photos and interact with the page content;
+* 📝 Fill out and edit forms;
+* 👤 Update profile information;
+* 📱 Navigate a fully responsive interface;
+* ⚡ Interact dynamically with the page elements;
 
 ---
 
-## 🚀 Como executar o projeto
+## 🛠️Technologies Used
 
-### 1. Clone o repositório
+* **HTML5** → Semantic structuring of page elements;
+* **CSS3** → Styling and creating responsive layouts;
+* **JavaScript (ES6+)** → Implementation of application logic and user interactivity;
+* **Flexbox** → Alignment and organization of components;
+* **CSS Grid** → Building adaptable layouts;
+* **Media Queries** → Adjusting the interface for different screen sizes;
+---
+
+## 🚀 How to run the project
+
+### 1.Clone the repository
 
 ```bash
 git clone https://github.com/MarcelaMourar/web_project_around.git
 ```
 
-### 2. Acesse a pasta do projeto
+### 2. Access the project folder
 
 ```bash
 cd web_project_around
 ```
 
-### 3. Abra o projeto
+### 3. Open the project
 
-Como este projeto foi desenvolvido utilizando **HTML, CSS e JavaScript puro**, existem duas formas de executá-lo:
+Since this project was developed using **HTML**, **CSS**, **and pure JavaScript**, there are two ways to run it:
 
-### Opção 1 (Recomendada): Utilizando o Live Server
+### Option 1 (Recommended): Using Live Server
 
-1. Abra o projeto no Visual Studio Code;
-2. Instale a extensão **Live Server**;
-3. Clique com o botão direito no arquivo `index.html`;
-4. Selecione **Open with Live Server**.
+1. Open the project in Visual Studio Code;
+2. Install the **Live Server** extension;
+3. Right-click on the `index.html` file;
+4. Select **Open with Live Server**.
 
-### Opção 2: Abrir diretamente no navegador
+### Option 2: Open directly in the browser
 
-Abra o arquivo `index.html` em qualquer navegador moderno.
+Open the `index.html` file in any modern web browser.
 
 ---
 
 
-### Repositório
+### Repository
 
 https://github.com/MarcelaMourar/web_project_around
 
 ---
 
-## 🎯 Objetivo do Projeto
+## 🎯 Project Objective
 
-Este projeto foi desenvolvido para praticar conceitos importantes do desenvolvimento front-end, como:
+This project was developed to practice important concepts of front-end development, such as:
 
-* Estruturação semântica com HTML5;
-* Estilização e responsividade com CSS3;
-* Manipulação do DOM com JavaScript;
-* Organização e reutilização de componentes visuais;
-* Boas práticas de desenvolvimento web.
-
+* Semantic structuring with HTML5;
+* Styling and responsiveness with CSS3;
+* DOM manipulation with JavaScript;
+* Organizing and reusing visual components;
+* Best practices in web development.
 ---
 
-## 👩‍💻 Autor
+## 👩‍💻 Author
 
-Projeto desenvolvido por **Marcela Moura** como parte do programa de **Desenvolvimento Web da TripleTen**.
-
+Project developed by **Marcela Moura** as part of the **TripleTen Web Development** program.
