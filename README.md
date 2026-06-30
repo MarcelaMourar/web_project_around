@@ -35,13 +35,13 @@ The main objective of this project was to practice fundamental concepts of front
 ### 1.Clone the repository
 
 ```bash
-git clone https://github.com/MarcelaMourar/web_project_around.git
+git clone https://github.com/MarcelaMourar/around-us.git
 ```
 
 ### 2. Access the project folder
 
 ```bash
-cd web_project_around
+cd around-us
 ```
 
 ### 3. Open the project
@@ -64,7 +64,7 @@ Open the `index.html` file in any modern web browser.
 
 ### Repository
 
-https://github.com/MarcelaMourar/web_project_around
+https://github.com/MarcelaMourar/around-us.git
 
 ---
 
